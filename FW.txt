@@ -1,0 +1,19 @@
+
+Current Design:
+**************
+1. All the interfaces configured FW as GW(.1) and the FW is advertising the directly connected interfaces/static redistributed subnets into OSPF on ROF LAN.
+2. ROF LAN is our transit network to reach all the destination behind the firewall. we have around 100 firewalls on ROF LAN.
+2. Currently ACI is configured as L2 EPG for directly connected interfaces/sub-interface(.1Q Trunk) for all the FWs.
+
+Goal:
+1. We want to Migrate the GW(.1) from FW to ACI (L3 EPG) with the limited configuration.Just moving the GW from FW to ACI.
+2. On this phase, we're not migrating the exist prod firewall policy into ACI contract.
+3. All the traffic has to pass through the same FW, because the firewall policy still in place on deep inspection for all our production traffic.
+
+ 
+Test case: using Two-Arm L4-l7 feature: We want to try attached design:
+***********************************************************************
+1. on FW1, source WEB EPG to reach the destination on FW2 for( APP1,APP2, Internet) destinations.
+2. on FW2, source (APP1, APP2)EPG to reach DB EPG desintion.
+3. From the L3 EPG point of view, we want to send all the traffic back to the same firewall to reach all the destination.
+

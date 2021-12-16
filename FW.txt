@@ -1,6 +1,6 @@
 
 Current Design:
-**************
+******************
 1. All the interfaces configured FW as GW(.1) and the FW is advertising the directly connected interfaces/static redistributed subnets into OSPF on ROF LAN.
 2. ROF LAN is our transit network to reach all the destination behind the firewall. we have around 100 firewalls on ROF LAN.
 2. Currently ACI is configured as L2 EPG for directly connected interfaces/sub-interface(.1Q Trunk) for all the FWs.
